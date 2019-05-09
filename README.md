@@ -101,8 +101,16 @@ https://github.com/iceman1001/proxmark3/blob/master/install.sh
 - Get the latest commits
 `git pull`
 
-- Install the blacklist rules and  add user to dialout group (if you on a Linux/ubuntu/debian). If you do this one, you need to logout and login in again to make sure your rights got changed.
-`make udev`
+- Install the blacklist rules. 
+`sudo cp -rf driver/77-mm-usb-device-blacklist.rules /etc/udev/rules.d/77-mm-usb-device-blacklist.rules`
+`sudo udevadm control --reload-rules`
+`make udev` <--- not sure if that is needed.
+
+- Add user to dialout group (if you on a Linux/ubuntu/debian)
+`sudo adduser $USER dialout`
+
+You need to logout and login in again to make sure your rights got changed.
+
 
 - Clean and complete compilation
 `make clean && make all`
